@@ -25,5 +25,8 @@ Elle met en relation les **conducteurs** et **passagers** partageant des trajets
 - **Google Maps API**
 - **Stripe** (paiements)
 - **Clean Architecture + BLoC Pattern**
-
+Équipe
+Maiza Roua — Développeuse Flutter
+Encadrant : [Riadh HAJJI]
  
+
