@@ -43,6 +43,7 @@ class _SignupPageState extends State<SignupPage> {
 
       // 2) Création du modèle Utilisateur
       // ⚠️ On met dateInscription côté Firestore avec serverTimestamp (mieux)
+
       Utilisateur user = Utilisateur(
         uid: uid,
         nom: nomController.text.trim(),
@@ -50,10 +51,12 @@ class _SignupPageState extends State<SignupPage> {
         email: email,
         telephone: telController.text.trim(),
         photoUrl: "",
-        dateInscription: DateTime.now(), // utilisé si tu en as besoin localement
+        dateInscription: DateTime.now(),
         preferences: const [],
         noteMoyenne: 0.0,
+        typeUtilisateur: selectedType, // ✅ IMPORTANT
       );
+
 
       // 3) Enregistrement Firestore
       await FirebaseFirestore.instance.collection("users").doc(uid).set({
@@ -124,6 +127,19 @@ class _SignupPageState extends State<SignupPage> {
                 decoration: const InputDecoration(labelText: "Password"),
               ),
               const SizedBox(height: 20),
+              DropdownButtonFormField<String>(
+                value: selectedType,
+                items: types
+                    .map((t) => DropdownMenuItem(value: t, child: Text(t)))
+                    .toList(),
+                onChanged: (v) => setState(() => selectedType = v ?? "passager"),
+                decoration: const InputDecoration(
+                  labelText: "Type d'utilisateur",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 16),
+
               ElevatedButton(
                 onPressed: signup,
                 child: const Text("Créer un compte"),

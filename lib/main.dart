@@ -1,11 +1,8 @@
-import 'package:covoituragelocale/vue/add_ride.dart';
-import 'package:covoituragelocale/vue/destination.dart';
-import 'package:covoituragelocale/vue/signup_page.dart';
+import 'package:covoituragelocale/controlleur/AuthGate.dart';
 import 'package:flutter/material.dart';
-import 'vue/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -16,13 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Covoiturage Locale',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home:LoginPage(),
-      //DestinationFilterPage(),
-        //AddRidePage(),
-      //SignupPage()
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AuthGate(),
     );
   }
 }
